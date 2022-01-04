@@ -2,11 +2,11 @@
 
 ### O que é?
 
--Kubernetes é uma aplicação desenvolvida pela Google para o controle de diversos containers que rodam aplicações
+- Kubernetes é uma aplicação desenvolvida pela Google para o controle de diversos containers que rodam aplicações
 
 ### Qual problema o Kubernetes resolve?
 
--A necessidade do controle de containers, já que eles são úteis para que rodemos microserviços 
+- A necessidade do controle de containers, já que eles são úteis para que rodemos microserviços 
 
 ### O que o Kubernetes oferece? 
 
