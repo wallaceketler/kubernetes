@@ -94,4 +94,18 @@ kubectl get replicaset -> mostra quantas replicas temos dos pod's
 kubectl edit deployment NAME -> edita o deployment, exemplo para nosso caso: nginx-depl
 ~~~
 
-- Caso editemos o arquivo do deployment com o comando acima, por exemplo, mudando a versão da imagem, como não alteramos o nome do deployment ele continua intacto, mas o id do replicaSet muda e, consequentemente, o id do pod também, automaticamente, e simultaneamente, a replicaSet antiga morre (seus pods vão para a nova versão) .
+- Caso editemos o arquivo do deployment com o comando acima, por exemplo, mudando a versão da imagem, como não alteramos o nome do deployment ele continua intacto, mas o id do replicaSet muda e, consequentemente, o id do pod também, automaticamente, e simultaneamente, a replicaSet antiga morre (seus pods vão para a nova versão).
+
+~~~html
+
+kubectl logs [nome deployment-id replicaset-idPod] -> mostra registro/histórico 
+kubectl exec -it [nome deployment-id replicaset-idPod] --bin/bash -> entra no terminal da aplicação
+~~~
+
+- Ao criarmos deployment, depois de passarmos o nome da imagem, podemos escolher algumas opções, mas se forem diversas, podemos criar um arquivo.yaml e pedirmos para executá-lo:
+
+~~~html
+
+kubectl apply -f arquivo.yaml
+
+~~~
