@@ -65,4 +65,32 @@
 máquina virtual, possamos ter um Node com tanto os processos do Worker quanto os do Master. 
 - Kubectl são linhas de comando que permitem a comunicação com o Api Server (processo do node master que regula o que vai ser feito
     o que, mais tarde, é realizado pelos processos do Worker Node)
+- A instalação do minikube ocorre a partir dos seguintes comandos no shell para a distro Ubuntu
 
+~~~html
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+~~~
+
+- O kubectl pode ser instalado com os comandos deste link: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+### Comandos do Kubectl
+
+- É importante entender que o Deployment comanda o ReplicaSet(réplicas)
+- O ReplicaSet comanda o Pod
+- O pod é uma abstração de um container
+- Isso significa que temos a seguinte hierarquia: deployment > replicaset > pod, pois o deployment usa apenas o nome, o replicaset usa o nome + id e o pod usa nome + id + id próprio para se identificar(já que existem réplicas de um mesmo pod)
+- Então, ao mostrarmos as replicaset's mostramos o nome + o id daquele pod e quantos deles temos.
+- Com isso, podemos mexer diretamente e apenas no deployment para atualizar, selecionar quantidade de pods(réplicas) entre outras coisas, pois o deployment é a ideia geral.
+~~~html
+
+kubectl get deployment -> mostra deployments ( deployments são, aqui, a abstração de um pod)
+kubectl get pod -> mostra pods existentes
+kubectl get services -> mostra serviços existentes
+kubectl create -h -> mostra comandos de criação existentes
+kubectl create deployment NAME --image=image -> cria um pod, exemplo abaixo:
+kubectl create deployment nginx-depl --image=nginx -> Como o deployment é uma abstração do pod, este comando cria um pod com a imagem do nginx baixado do dockerHub
+kubectl get replicaset -> mostra quantas replicas temos dos pod's
+kubectl edit 
+
+~~~
