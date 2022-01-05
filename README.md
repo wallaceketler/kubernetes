@@ -91,6 +91,7 @@ kubectl create -h -> mostra comandos de criação existentes
 kubectl create deployment NAME --image=image -> cria um pod, exemplo abaixo:
 kubectl create deployment nginx-depl --image=nginx -> Como o deployment é uma abstração do pod, este comando cria um pod com a imagem do nginx baixado do dockerHub
 kubectl get replicaset -> mostra quantas replicas temos dos pod's
-kubectl edit 
-
+kubectl edit deployment NAME -> edita o deployment, exemplo para nosso caso: nginx-depl
 ~~~
+
+- Caso editemos o arquivo do deployment com o comando acima, por exemplo, mudando a versão da imagem, como não alteramos o nome do deployment ele continua intacto, mas o id do replicaSet muda e, consequentemente, o id do pod também, automaticamente, e simultaneamente, a replicaSet antiga morre (seus pods vão para a nova versão) .
