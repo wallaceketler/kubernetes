@@ -109,7 +109,7 @@ kubectl exec -it [nome deployment-id replicaset-idPod] --bin/bash -> entra no te
 kubectl apply -f arquivo.yaml
 
 ~~~
-### O arquivo YAML de configuração do Kubernetes
+### O arquivo YAML de configuração do Kubernetes (REVISAR ESTA PARTE)
 
 - O arquivo começa com o versão de api e o tipo da configuração, como, por exemplo, se é um deployment, um service, ou outro
 - Depois disso,o arquivo é dividido em 3 partes: o Metadata(metadados, ou seja, dados que falam dos dados, como nomes etc), spec(especificações, como a quantidade de réplicas no deployment ou a porta no service, ou seja, são especificidades de cada tipo configurado) e o status, que são informações automaticamente geradas pelo kubernetes a partir do etcd (parte do master node que armazena dados)
