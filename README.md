@@ -155,4 +155,30 @@ spec:
         - containerPort: 8080
 ~~~
 
+### Namespaces
+
+- Namespaces são formas de organizar os recursos sendo um cluster dentro do cluster.
+- Pomode visualizar os namespaces ativos com o comando 'kubectl get namespaces'
+- Temos o kube-system que não devemos alterar, e trata de processos do sistema.
+- Temos o kube-public, que contêm os dados de acesso público, como o configmap.
+- Temos o kube-node-lease que contêm informações sobre a vida dos nodes, como a disponibilidade deste.
+- Temos o default, que é usado para criar recursos no início caso não tenhamos criado outro namespace
+- Podemos criar outros namespaces com o comando 'kubectl create namespace [nome]'
+- Devemos usar diferentes namespaces para diferentes propósitos, como um apenas para a base de dados, por exemplo, ou para times diferentes, pois isso evita acúmulo e má organização, inclusive para quando times diferentes trabalham no mesmo projeto, já que isso pode gerar conflitos.
+- É possível limitar o acesso e recursos a determinados grupos a apenas o namespace do projeto deles.
+- É possivel limitar, por namespace, CPU, RAM e armazenamento.
+- Apesar das vantagens, se em um namespace, temos um configmap que acessa um banco de dados, mesmo que desejemos um igual no em outro namespace, precisaremos criar um novo, pois não teremos acesso. O mesmo vale para um secret. Entretanto, recursos como o Service podem ser compartilhados entre namespaces.
+- Alguns componentes como o Volume ou Node não podem ser criados dentro de um namespace. 
+- Se quisermos aplicar uma configuração dentro de um determinado namespace diferente do default devemos fazer:
+
+~~~html
+
+kubectl apply -f arquivo.yaml --namespace=nomeNamespace
+
+~~~
+
+- Ou podemos colocar isso no 'metadata' do arquivo.yaml (mais recomendado por termos documentado)
+
+### Ingress
+
 
