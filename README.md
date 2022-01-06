@@ -181,4 +181,16 @@ kubectl apply -f arquivo.yaml --namespace=nomeNamespace
 
 ### Ingress
 
+- Quando temos o external service para acesso da aplicação pelo browser, a URL é do tipo  do tipo protocoloSegurança://ipDoNode:porta, como https://124.89.101.2:8080, como explicado, e o Ingress é um componente que auxilia na criação do DNS, ou seja, um nome, como https://my-app.com.
+- Logo, no lugar do service, devemos criar um arquivo de configuração yaml do tipo Ingress, além de um ingress controller que regulará este processo.
+- Para instalar o ingress controller devemos usar o comando 
+
+~~~html
+
+minikube addons enable ingress
+
+~~~
+- Nas specs do arquivo.yaml do Ingress devemos definir as regras (rules) de ingresso.
+
+
 
