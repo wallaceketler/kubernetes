@@ -109,3 +109,50 @@ kubectl exec -it [nome deployment-id replicaset-idPod] --bin/bash -> entra no te
 kubectl apply -f arquivo.yaml
 
 ~~~
+### O arquivo YAML de configuração do Kubernetes
+
+- O arquivo começa com o versão de api e o tipo da configuração, como, por exemplo, se é um deployment, um service, ou outro
+- Depois disso,o arquivo é dividido em 3 partes: o Metadata(metadados, ou seja, dados que falam dos dados, como nomes etc), spec(especificações, como a quantidade de réplicas no deployment ou a porta no service, ou seja, são especificidades de cada tipo configurado) e o status, que são informações automaticamente geradas pelo kubernetes a partir do etcd (parte do master node que armazena dados)
+
+Exemplo de Secret
+
+~~~html
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secret
+type: Opaque            ->padrão
+data:
+  username:             -> devemos usar dados encriptados em base 64, o que pode ser feito no terminal com o comando 'echo -n 'valor' | base64'
+  password: 
+~~~
+
+Se vamos referenciar o Secret no Deployment, devemos aplicar o secret antes para funcionar.
+
+
+
+Exemplo de Deployment
+
+~~~html
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+spec:
+  replicas: 2
+  selector:
+  template:                     ->TEMPLETE:ESSA PARTE DEFINE A 'PLANTA' DE UM POD, QUAL IMAGEM, NOME, PORTA, ETC
+    metadata:
+      labels:                   ->LABELS E SELECTOR AJUDAM A FALAR QUAIS PODS ESTÃO ASSOCIADOS A ESSE DEPLOYMENT
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.16
+        ports:
+        - containerPort: 8080
+~~~
+
+
