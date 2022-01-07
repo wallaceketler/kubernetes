@@ -210,6 +210,9 @@ minikube addons enable ingress
 
 ### StatefulSet
 
+- Aplicações Stateful são aquelas com estado, ou seja, aquelas nas quais o estado importa, como bancos de dados 
+- Para evitar inconsistências de dados, ao invés de usarmos deployment, usamos o statefulSet, outro 'kind' de arquivo.yaml 
+- Enquanto os deployments usam como identificador do pod um hash aleatório, o statefulset usa algo do tipo $(statefulset name)-$(ordinal)
 
 
 
