@@ -190,7 +190,28 @@ kubectl apply -f arquivo.yaml --namespace=nomeNamespace
 minikube addons enable ingress
 
 ~~~
-- Nas specs do arquivo.yaml do Ingress devemos definir as regras (rules) de ingresso.
+- Nas specs do arquivo.yaml do Ingress devemos definir as regras (rules) de ingresso, além de podermos definir mais de um caminho(path) depois da / no fim do nome de domínio, como https://my-app.com/something.
+
+### Helm
+
+- Assim como no Linux temos o 'apt' para baixarmos pacotes, no Kubernetes temos o Helm, que nos auxilia a baixar arquivos.yaml de coisas comumente já feitas.
+- Temos o helmHub ou podemos procurar com o comando "helm search [algo]'
+
+### Volumes:
+
+- Como o Kubernetes não trata a persistência de dados em caso de morte de um pod, por exemplo, de banco de dados, precisamos de um armazenamento que não dependa do ciclo de vida dos pods.
+- Este armazenamento deve ser acessível em qualquer node.
+- O armazenamento deve sobreviver mesmo que o cluster morra.
+- Podemos definir o tipo persistentData no 'kind' do arquivo.yaml, mas ainda precisamos de um armazenamento físico para isso, seja em nuvem ou não. O armazenamento físico deve ser explicitado nas specs do documento.
+- Não podemos colocar persistentData em algum namespace.
+- Outro tipo (kind) definido no arquivo.yaml é o pvc(persistentData claim) que, quando um pod pedir um volume, vai tentar achar um volume com as espeficações definidas nele (como o tamanho definido no pvc) dentro do cluster)
+- O pvc deve existir no mesmo namespace que o pod que usa ele.
+- A storage class provê dinamicamente um persistent Volumes quando o PVC diz que necessita de uma com certa configuração, o que tira um pouco a tarefa maçante do administrador do Kubernetes de criar este persistent Volume manualmente toda vez, que é o que acontece geralmente. Também temos esse 'kind' no arquivo.yaml (StorageClass).
+
+### StatefulSet
+
+
+
 
 
 
